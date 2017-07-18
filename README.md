@@ -5,3 +5,6 @@
 
 # 项目截图
 <div align=center><img width="960" height="480" src="https://github.com/wlj644920158/ColckView/blob/master/screenshot/Screenshot_2017-07-12-09-47-26.png"/></div>
+
+ 
+20170717更新重写onAttachedToWindow方法和onDetachedFromWindow方法
