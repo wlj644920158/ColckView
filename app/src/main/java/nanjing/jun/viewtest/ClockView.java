@@ -117,8 +117,24 @@ public class ClockView extends View {
                 calendar.setTime(new Date());
             }
         });
-        valueAnimator.start();
 
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (valueAnimator != null && valueAnimator.isPaused()) {
+            valueAnimator.start();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            valueAnimator.cancel();
+            valueAnimator = null;
+        }
     }
 
     @Override
@@ -141,6 +157,7 @@ public class ClockView extends View {
 
     /**
      * 绘制橙色圆环
+     *
      * @param canvas
      */
     private void drawBgYellowCircle(Canvas canvas) {
@@ -171,6 +188,7 @@ public class ClockView extends View {
 
     /**
      * 绘制时钟表盘
+     *
      * @param canvas
      */
     private void drawClock(Canvas canvas) {
@@ -179,6 +197,7 @@ public class ClockView extends View {
 
     /**
      * 绘制时针
+     *
      * @param canvas
      */
     private void drawHourPointer(Canvas canvas) {
@@ -193,6 +212,7 @@ public class ClockView extends View {
 
     /**
      * 绘制分针
+     *
      * @param canvas
      */
 
@@ -207,6 +227,7 @@ public class ClockView extends View {
 
     /**
      * 绘制秒针
+     *
      * @param canvas
      */
     private void drawSecPointer(Canvas canvas) {
@@ -220,6 +241,7 @@ public class ClockView extends View {
 
     /**
      * 绘制中间的小圆点
+     *
      * @param canvas
      */
     private void drawCover(Canvas canvas) {
@@ -229,6 +251,7 @@ public class ClockView extends View {
 
     /**
      * 计算分针对应的监督
+     *
      * @param min
      * @param sec
      * @return
@@ -239,6 +262,7 @@ public class ClockView extends View {
 
     /**
      * 计算时针对应的角度
+     *
      * @param hour
      * @param min
      * @return
@@ -250,6 +274,7 @@ public class ClockView extends View {
 
     /**
      * 计算秒针对应的角度
+     *
      * @param sec
      * @return
      */
@@ -260,6 +285,7 @@ public class ClockView extends View {
 
     /**
      * 设置时间段
+     *
      * @param durationList
      */
     public void setDurationList(List<TimeDuration> durationList) {
